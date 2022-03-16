@@ -1,4 +1,4 @@
-public class Job {
+public class Job implements Comparable<Job> {
     private int id;
     private int group;
     private long size;
@@ -17,7 +17,7 @@ public class Job {
         return group;
     }
 
-    public long getLong() {
+    public long getSize() {
         return size;
     }
 
@@ -49,6 +49,10 @@ public class Job {
             unit = "KB";
         }
         return String.format("%-10d\t%-5d\t%-5.2f%s", id, group, s, unit);
+    }
+
+    public int compareTo(Job job) {
+        return group - job.group;
     }
 
     

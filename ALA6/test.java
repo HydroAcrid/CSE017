@@ -1,9 +1,12 @@
 import java.util.Stack;
 import java.util.EmptyStackException;
 import java.util.Scanner;
+import java.util.PriorityQueue;
+import java.io.*;
 
 
 public class test {
+    //part 1 
     public static void main(String[] args) {
         Stack<Integer> postfixStack = new Stack<>();
         Scanner keyboard = new Scanner(System.in);
@@ -56,6 +59,85 @@ public class test {
 
     } while(answer.equals("y"));
 
+    //part 2: PriorityQueue
+    PriorityQueue<Job> printerQueue = new PriorityQueue<>();
+    readJobs(printerQueue, "jobs.txt");
+    long PrinterSpeed = 10000;
+    long totalSize = 0;
+    while(!printerQueue.isEmpty()) {
+        Job job = printerQueue.poll();
+        String time = calcTime(job.getSize(), PrinterSpeed);
+        System.out.printf("%s\t\t%-10s\n", job.toString(), time); 
+        totalSize += job.getSize();
+    }
+    System.out.println("Total Printing Time: " + calcTime(totalSize, PrinterSpeed));
 
+    }
+
+    public static String calcTime(long size, long speed) {
+        long time = size / speed; //printing time in seconds 
+        int days = 0, hours = 0, minutes = 0, seconds = 0;
+        String out = "";
+        if(time > 86400) {
+            //days
+            days = (int) (time/86400);
+            time = (int) (time%86400);
+            if(days < 10)
+                out += "0" + days + ":";
+            else 
+                out += days + ":";
+        }
+        else 
+            out += "00:";
+            if(time > 3600) {
+                //hours
+                hours = (int) (time/3600);
+                time = (int) (time%3600);
+                if(hours < 10)
+                    out += "0" + hours + ":";
+                else 
+                    out += hours + ":";
+            }
+            else 
+                out += "00:";
+            if(time > 60) {
+                //minutes 
+                minutes = (int) (time/60);
+                time = (int)time % 60;
+                if(minutes < 10)
+                    out += "0" + minutes + ":";
+                else 
+                    out += minutes + ":";
+            }
+            else
+                out += "00:";
+                seconds = (int) Math.round(time);
+                if(seconds < 10)
+                    out += "0" + seconds;
+                else 
+                    out += seconds;
+
+                return out;
+    }
+
+    public static void readJobs(PriorityQueue<Job> pq, String fileName) {
+        File file = new File(fileName);
+        Scanner readFile = null;
+        try {
+            readFile = new Scanner(file);
+
+        }
+        catch(FileNotFoundException e){
+            System.out.println("File not found");
+            System.exit(0);
+        }
+        while(readFile.hasNext()) {
+            int id = readFile.nextInt();
+            int group = readFile.nextInt();
+            long size = readFile.nextLong();
+            Job job = new Job(id, group, size);
+            pq.offer(job);
+        }
+        readFile.close();
     }
 }
