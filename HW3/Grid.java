@@ -9,14 +9,15 @@ public class Grid <E> {
     private int cols;
 
     public Grid() {
+        int[][] table = new int[10][10];
     }
 
     public Grid(int rows, int cols) {
-        this.rows = rows;
-        this.cols = cols;
+        int[][] table = new int[rows][cols];
     }
 
     public Grid(E[][] array) {
+        E[][] table = array;
         
     }
 
@@ -29,18 +30,42 @@ public class Grid <E> {
     }
 
     private void checkRow(int r) {
-        
+        //Checks if the row is valid or not 
+        try {
+        int[] temp = new int[r];
+        if(r < 0 || r>= temp.length) throw new ArrayIndexOutOfBoundsException();
+        }
+        catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Row out of bounds");
+        }
+
     }
     
     private void checkCol(int c) {
+        //Checks if the col is valid or not
+        try {
+            int[] temp = new int[c];
+            if(c < 0 || c >= temp.length) throw new ArrayIndexOutOfBoundsException();
+        }
+        catch(ArrayIndexOutOfBoundsException e) {
+            System.out.println("Column out of bounds");
+        }
+    }   
 
+    public E get(int rows, int cols) {
+        int[][] temp = new int[rows][cols]; 
+        checkRow(rows);
+        checkCol(cols);
+        //What would this return exactly? 
+        return cells;
+        
     }
 
-    public <E> int get(Grid<E> row, Grid<E> cols) {
-        return 0;
-    }
-
-    public <E> void set(Grid<E> row, Grid<E> cols) {
+    public E set(int rows, int cols, Grid<E>v) {
+        checkRow(rows);
+        checkCol(cols);
+        //What would this return exactly?
+        return cells; 
         
     }
 

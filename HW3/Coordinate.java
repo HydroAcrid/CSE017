@@ -5,48 +5,53 @@ public class Coordinate {
     private int y;
 
     public Coordinate(int x, int y) {
+        Pair<Integer, Integer> point;
         this.x = x;
         this.y = y;
+
     }
 
     public int getX() {
-        return x;
+        return point.getFirst();
     }
 
     public int getY() {
-        return y;
+        return point.getSecond();
     }
 
     public void setX(int x) {
-        this.x = x;
+        this.x = point.getFirst();
     }
 
     public void setY(int y) {
-        this.y = y;
+        this.y = point.getSecond();
     }
 
     public void translateX(int d) {
-
+        x += d;
     }
 
     public void translateY(int d) {
-
+        y += d;
     }
 
     public void scaleX(int f) {
-
+        x *= f;
     }
 
     public void scaleY(int f) {
-
+        y *= f;
     }
 
     public String toString() {
-        return "null";
+        return "bruh";
     }
 
     public boolean equals(Object o) {
-        return false;
+        Coordinate c = (Coordinate) o;
+        boolean x = c.getX() == point.getFirst();
+        boolean y = c.getY() == point.getSecond();
+        return x && y;
     }
 
 
