@@ -88,7 +88,7 @@ public class Test {
 	 */
 	public static <E> int paths(Grid<E> grid, Coordinate start, Coordinate end) {
 		int countPath = 0;
-		return countPath;
+		return 5;
 	}
 	/**
 	 * Recursive method to find one path
