@@ -3,9 +3,11 @@ public class Stack<E> {
 
     private ArrayList<E> elements;
     public Stack() { 
-        elements = new ArrayList<>();}
+        elements = new ArrayList<>();
+    }
     public Stack(int capacity) {
-    elements = new ArrayList<>(capacity);}
+    elements = new ArrayList<>(capacity);
+}
     public int size() { 
         return elements.size();
     }

@@ -1,4 +1,11 @@
+/**
+ * Kevin Dotel
+ * Test.java
+ * 3/21/22
+ */
 import java.util.ArrayList;
+
+import javax.sql.rowset.spi.TransactionalWriter;
 
 public class Test {
 
@@ -72,7 +79,7 @@ public class Test {
 		// Tamaqua (cell at coordinate (0, 0)) to
 		// Milford (cell at coordinate  (3, 3))
 		String pa = onePath(map, new Coordinate(0, 0), new Coordinate(3, 3));
-		System.out.println("\nOne path from Tamaqua to Milford : Tamaqua" + pa);
+		System.out.println("\nOne path from Tamaqua to Milford : " + pa);
 
 	}
 	/**
@@ -88,7 +95,26 @@ public class Test {
 	 */
 	public static <E> int paths(Grid<E> grid, Coordinate start, Coordinate end) {
 		int countPath = 0;
-		return 5;
+
+		if(start.getX() != end.getX()){
+            int x = start.getX();
+            start.translateX(1);
+            countPath += paths(grid, start, end);
+            start.setX(x);
+        }
+        if(start.getY() != end.getY()){
+            int y = start.getY();
+            start.translateY(1);
+            countPath += paths(grid, start, end);
+            start.setY(y);
+		}
+		else {
+			return 1;
+		}
+		return countPath;
+		
+
+
 	}
 	/**
 	 * Recursive method to find one path
@@ -103,8 +129,23 @@ public class Test {
 	 *         with the contents of the visited cells
 	 */
 	public static <E> String onePath(Grid<E> grid, Coordinate start, Coordinate end) {
-		String path = "";
-		return path;
+		String path = (String)grid.get(start.getX(),start.getY()); 
+
+		if(start.getX() != end.getX()){
+            start.translateX(1);
+			return path + "-" + onePath(grid, start, end);
+        }
+        if(start.getY() != end.getY()){
+            start.translateY(1);
+			return path + "-" + onePath(grid, start, end);
+
+		}
+		if (start.getX() == end.getX() && start.getY() == end.getY()) {
+			return (String)grid.get(start.getX(),start.getY());
+		}
+		return null;
+
+
 	}
 
 }

@@ -1,3 +1,10 @@
+/**
+ * ALA_6
+ * Job.java
+ * Kevin Dotel
+ * 3/16/22
+ */
+
 public class Job implements Comparable<Job> {
     private int id;
     private int group;

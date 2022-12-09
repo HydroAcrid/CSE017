@@ -1,3 +1,10 @@
+/**
+ * ALA_6
+ * test.java
+ * Kevin Dotel
+ * 3/16/22
+ */
+
 import java.util.Stack;
 import java.util.EmptyStackException;
 import java.util.Scanner;
@@ -74,6 +81,12 @@ public class test {
 
     }
 
+    /**
+     * Calculates the time necessary to complete the task
+     * @param size - size of the number
+     * @param speed - speed at which number is calculated
+     * @return - returns the time it took
+     */
     public static String calcTime(long size, long speed) {
         long time = size / speed; //printing time in seconds 
         int days = 0, hours = 0, minutes = 0, seconds = 0;
@@ -120,6 +133,11 @@ public class test {
                 return out;
     }
 
+    /**
+     * Opens jobs.txt file and reads it 
+     * @param pq - list of jobs 
+     * @param fileName - Jobs.txt file
+     */
     public static void readJobs(PriorityQueue<Job> pq, String fileName) {
         File file = new File(fileName);
         Scanner readFile = null;

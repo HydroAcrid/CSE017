@@ -1,23 +1,31 @@
+/**
+ * Kevin Dotel
+ * Grid.java
+ *3/21/22
+ */
 import java.util.*;
 import java.io.*;
 
 
 public class Grid <E> {
 
-    private ArrayList<ArrayList<E>> cells;
+    //private ArrayList<ArrayList<E>>[][] cells;
+    private E[][] cells;
     private int rows;
     private int cols;
 
     public Grid() {
-        int[][] table = new int[10][10];
+        cells = (E[][]) new ArrayList[10][10];
     }
 
     public Grid(int rows, int cols) {
-        int[][] table = new int[rows][cols];
+        cells = (E[][]) new ArrayList[rows][cols];
     }
 
     public Grid(E[][] array) {
-        E[][] table = array;
+        // E[][] table = array;
+        // cells = (ArrayList<ArrayList<E>>[][]) array;
+        cells = array;
         
     }
 
@@ -33,7 +41,7 @@ public class Grid <E> {
         //Checks if the row is valid or not 
         try {
         int[] temp = new int[r];
-        if(r < 0 || r>= temp.length) throw new ArrayIndexOutOfBoundsException();
+        if(r < 0 || r > 10) throw new ArrayIndexOutOfBoundsException();
         }
         catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Row out of bounds");
@@ -45,7 +53,7 @@ public class Grid <E> {
         //Checks if the col is valid or not
         try {
             int[] temp = new int[c];
-            if(c < 0 || c >= temp.length) throw new ArrayIndexOutOfBoundsException();
+            if(c < 0 || c > 10) throw new ArrayIndexOutOfBoundsException();
         }
         catch(ArrayIndexOutOfBoundsException e) {
             System.out.println("Column out of bounds");
@@ -53,24 +61,35 @@ public class Grid <E> {
     }   
 
     public E get(int rows, int cols) {
-        int[][] temp = new int[rows][cols]; 
+        //int[][] temp = new int[rows][cols];
+        //cells = new ArrayList[rows][cols];
         checkRow(rows);
         checkCol(cols);
         //What would this return exactly? 
-        return cells;
+        return cells[rows][cols];
         
     }
 
-    public E set(int rows, int cols, Grid<E>v) {
+    public void set(int rows, int cols, E v) {
+        //cells = new ArrayList[rows][cols];
         checkRow(rows);
         checkCol(cols);
+        cells[rows][cols] = v;
         //What would this return exactly?
-        return cells; 
+
         
     }
 
     public String toString() {
-        return "null";
+        String output = "";
+        for(int i = 0; i< rows; i++){
+            output += "[ ";
+            for(int j = 0; j< cols;j++){
+                output += get(i,j).toString() + " ";
+            }
+            output += "]\n";
+        }
+        return output;
     }
 
 

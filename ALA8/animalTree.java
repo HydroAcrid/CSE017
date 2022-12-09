@@ -1,7 +1,13 @@
-import java.util.ArrayList;
+/**
+ * Kevin Dotel
+ * CSE17
+ * 4/15/22
+ */
 
+import java.util.ArrayList;
 import java.util.*;
 import java.io.*;
+
 
 public class animalTree {
     public static void main(String[] args) {
@@ -41,6 +47,11 @@ public class animalTree {
     }
 
 
+    /**
+     * Reads the file 
+     * @param al - arraylist
+     * @param filename - file
+     */
     public static void readFile(ArrayList<String> al, String filename) {
         File file = new File(filename);
         try {
@@ -58,6 +69,12 @@ public class animalTree {
 
     }
 
+    /**
+     * Adds into the data structures
+     * @param bst - BST
+     * @param heap - HEAP
+     * @param al - ArrayList
+     */
     public static void testAdd(BST<String> bst, Heap<String> heap, ArrayList<String> al) {
         int totalBst = 0, totalHeap = 0;
         int count = 0;
@@ -78,6 +95,12 @@ public class animalTree {
         System.out.printf("%-30s\t%-10d\t%-10d\n", "average", totalBst/count, totalHeap/count);
     }
 
+    /**
+     * Checks to see if the data structures contain things
+     * @param bst - BST
+     * @param heap - HEAP
+     * @param al - Arraylist
+     */
     public static void testContains(BST<String> bst, Heap<String> heap, ArrayList<String> al) {
         int totalBst = 0, totalHeap = 0;
         for(int i = 0; i < 20; i++) {
@@ -93,6 +116,12 @@ public class animalTree {
         System.out.printf("%-30s\t%-10d\t%-10d\n", "average", totalBst/20, totalHeap/20);
     }
 
+    /**
+     * Removes elements from the data structures
+     * @param bst - BST
+     * @param heap - HEAP
+     * @param al - ArrayList
+     */
     public static void testRemove(BST<String> bst, Heap<String> heap, ArrayList<String> al) {
         int totalBst = 0, totalHeap = 0;
         System.out.printf("Testing Remove()");

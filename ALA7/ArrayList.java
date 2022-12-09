@@ -1,6 +1,10 @@
+/**
+ * Kevin Dotel
+ * Arraylist.java
+ */
 import java.util.*;
 
-public class ArrayList <E> { //O(1)
+public class ArrayList <E> {
     // data members
     private E[] elements;
     private int size;
@@ -15,11 +19,12 @@ public class ArrayList <E> { //O(1)
     }
 
     // Adding an item to the list (2 methods)
-    public boolean add(E item) { //O(n)
-        return add(size, item);
-        }
+public int add(E item) {
+    return add(size, item);
+    }
 
-    public boolean add(int index, E item){ //O(n)
+public int add(int index, E item){
+    int iterations = 0;
     if(index > size || index < 0)
     throw new ArrayIndexOutOfBoundsException();
     ensureCapacity();
@@ -29,15 +34,16 @@ public class ArrayList <E> { //O(1)
     else {
     for(int i=size-1; i>index; i--){
     elements[i+1] = elements[i];
-     }
+    iterations++;
+    }
     elements[index] = item;
     }
     size++;
-    return true;
+    return iterations;
     }
 
     // Getter and Setter
-public E get(int index) { //O(1)
+public E get(int index) {
     checkIndex(index);
     return elements[index];
     }
@@ -55,25 +61,39 @@ public void clear() { size = 0; }
 public boolean isEmpty() { 
     return (size == 0);}
 
-    // Removing an object from the list
-public boolean remove(Object o) {
-    E item = (E) o;
-    for(int i=0; i<size; i++)
-   if(elements[i].equals(item)){
-    remove(i);
-    return true;
+//     // Removing an object from the list
+// public boolean remove(Object o) {
+//     E item = (E) o;
+//     for(int i=0; i<size; i++)
+//    if(elements[i].equals(item)){
+//     remove(i);
+//     return true;
+//     }
+//     return false;
+//    }
+
+public int remove(E item) {
+    int iterations = 0;
+    for(int i =0; i<size; i++) {
+        if(elements[i].equals(item)){
+            remove(i);
+            return iterations;
+        }
     }
-    return false;
-   }
+    return iterations;
+}
 
    // Removing the item at index from the list
-public E remove(int index) {
+public int remove(int index) {
+    int iterations = 0;
     checkIndex(index);
     E item = elements[index];
-    for(int i=index; i<size-1; i++)
-   elements[i] = elements[i+1];
-    size--;
-    return item;
+    for(int i=index; i<size-1; i++) {
+        iterations++;
+        elements[i] = elements[i+1];
+    }
+        size--;
+    return iterations;
    }
 
    // Shrink the list to size
@@ -87,14 +107,18 @@ public void trimToSize() {
     }
 
     // Grow the list if needed
-private void ensureCapacity() {
+private int ensureCapacity() {
+    int iterations = 0;
     if(size >= elements.length) {
-     int newCap = (int) (elements.length * 1.5);
+    int newCap = (int) (elements.length * 1.5);
     E[] newElements = (E[]) new Object[newCap];
-    for(int i=0; i<size; i++)
+    for(int i=0; i<size; i++) {
     newElements[i] = elements[i];
+    iterations++;
+    }
     elements = newElements;
         }
+        return iterations;
     }
 
     // Check if the index is valid
@@ -126,6 +150,20 @@ private class ArrayIterator implements Iterator<E>{
         return current < size-1; }
     public E next() { 
         return elements[++current]; }
+    }
+
+    //method contains
+    public int contains(Object o) {
+        Iterator<E> iter = iterator();
+        int iterations = 0;
+
+        while(iter.hasNext()) {
+            iterations++;
+            if(iter.next().equals(o)) {
+                return iterations;
+            }
+        }
+        return iterations;
     }
 
 
