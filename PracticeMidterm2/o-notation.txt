@@ -1,0 +1,54 @@
+
+Notation	Name	Example
+{\displaystyle O(1)}O(1)	constant	Determining if a binary number is even or odd; Calculating {\displaystyle (-1)^{n}}(-1)^{n}; Using a constant-size lookup table
+
+{\displaystyle O(\log \log n)}O(\log \log n)	double logarithmic	Number of comparisons spent finding an item using interpolation search in a sorted array of uniformly distributed values
+
+{\displaystyle O(\log n)}O(\log n)	logarithmic	Finding an item in a sorted array with a binary search or a balanced search tree as well as all operations in a Binomial heap
+
+{\displaystyle O((\log n)^{c})}{\displaystyle O((\log n)^{c})}
+
+{\textstyle c>1}{\textstyle c>1}	polylogarithmic	Matrix chain ordering can be solved in polylogarithmic time on a parallel random-access machine.
+
+{\displaystyle O(n^{c})}O(n^{c})
+
+{\textstyle 0<c<1}{\textstyle 0<c<1}	fractional power	Searching in a k-d tree
+
+{\displaystyle O(n)}O(n)	linear	Finding an item in an unsorted list or in an unsorted array; adding two n-bit integers by ripple carry
+
+{\displaystyle O(n\log ^{*}n)}{\displaystyle O(n\log ^{*}n)}	n log-star n	Performing triangulation of a simple polygon using Seidel's algorithm, or the union–find algorithm. Note that {\displaystyle \log ^{*}(n)={\begin{cases}0,&{\text{if }}n\leq 1\\1+\log ^{*}(\log n),&{\text{if }}n>1\end{cases}}}\log ^{*}(n)={\begin{cases}0,&{\text{if }}n\leq 1\\1+\log ^{*}(\log n),&{\text{if }}n>1\end{cases}}
+
+{\displaystyle O(n\log n)=O(\log n!)}{\displaystyle O(n\log n)=O(\log n!)}	linearithmic, loglinear, quasilinear, or "n log n"	Performing a fast Fourier transform; Fastest possible comparison sort; heapsort and merge sort
+
+{\displaystyle O(n^{2})}O(n^{2})	quadratic	Multiplying two n-digit numbers by a simple algorithm; simple sorting algorithms, such as bubble sort, selection sort and insertion sort; (worst case) bound on some usually faster sorting algorithms such as quicksort, Shellsort, and tree sort
+
+{\displaystyle O(n^{c})}O(n^{c})	polynomial or algebraic	Tree-adjoining grammar parsing; maximum matching for bipartite graphs; finding the determinant with LU decomposition
+
+{\displaystyle L_{n}[\alpha ,c]=e^{(c+o(1))(\ln n)^{\alpha }(\ln \ln n)^{1-\alpha }}}{\displaystyle L_{n}[\alpha ,c]=e^{(c+o(1))(\ln n)^{\alpha }(\ln \ln n)^{1-\alpha }}}
+
+{\textstyle 0<\alpha <1}{\textstyle 0<\alpha <1}	L-notation or sub-exponential	Factoring a number using the quadratic sieve or number field sieve
+
+{\displaystyle O(c^{n})}O(c^{n})
+
+{\textstyle c>1}{\textstyle c>1}	exponential	Finding the (exact) solution to the travelling salesman problem using dynamic programming; determining if two logical statements are equivalent using brute-force search
+
+{\displaystyle O(n!)}O(n!)	factorial	Solving the travelling salesman problem via brute-force search; generating all unrestricted permutations of a poset; finding the determinant with Laplace expansion; enumerating all partitions of a set
+
+
+for(i;i<n,i++) == O(n)
+
+where(i<n) == O(n)
+
+for(i; i<1000; i++) == Constant: O(1)
+
+for(i++)
+    for(j++) == O(n^2)
+
+for(i++)
+    containing() == O(n^2)
+
+for(i=1; i<n; i *= 2) 
+    i = h; i >= 0; i/=2) == O(logn) 
+
+for(i=1; i<n; i>=2)
+     contain()       == O(n logn)
